@@ -1,5 +1,11 @@
 const express = require('express')
 const shop = require('./shops')
+const catagory = require('./catagories')
+const market = require('./markets')
+const product = require('./products')
 const routes = express.Router()
 routes.use(shop)
+routes.use(catagory)
+routes.use(market)
+routes.use(product)
 module.exports = routes
