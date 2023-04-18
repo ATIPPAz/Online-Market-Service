@@ -3,7 +3,7 @@ const cors = require('cors')
 const routes = require('../routes/index')
 const app = async (app) => {
   require('../configs/db')
-  const allowedOrigins = []
+  const allowedOrigins = ['http://localhost:4200']
   const corsOptions = {
     origin: function (origin, callback) {
       if (!origin) return callback(null, true)
