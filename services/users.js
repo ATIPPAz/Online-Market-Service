@@ -7,27 +7,11 @@ module.exports = {
     const user = await User.findOne(param).select('-password')
     return user
   },
-  async createUser({
-    firstName,
-    lastName,
-    phone,
-    email,
-    username,
-    address,
-    age,
-    password,
-  }) {
-    const newUser = new User({
-      firstName,
-      lastName,
-      phone,
-      email,
-      username,
-      address,
-      age,
-      password,
+  async createUser(data) {
+    console.log(data)
+    await User.create({ ...data }, (err, res) => {
+      if (err) return err
+      return res
     })
-    await newUser.save()
-    return newUser
   },
 }

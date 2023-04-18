@@ -23,19 +23,19 @@ module.exports = {
       })
     }
   },
-  onCreate(req, res) {
+  async onCreate(req, res) {
     res.status(201).json({
       status: 201,
       data: [],
     })
   },
-  onUpdate(req, res) {
+  async onUpdate(req, res) {
     res.status(201).json({
       status: 201,
       data: [],
     })
   },
-  onDelete(req, res) {
+  async onDelete(req, res) {
     res.status(201).json({
       status: 201,
       data: [],
