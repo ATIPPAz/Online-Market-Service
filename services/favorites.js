@@ -3,20 +3,22 @@ module.exports = {
   async getFavoriteAll() {
     return await Favorite.find().select('')
   },
-  async getFavoriteOne(id) {
-    return await Favorite.findOne({ _id: id }).select('')
+  async getFavoriteOne(param) {
+    return await Favorite.findOne(param).select('')
   },
   async createFavorite(data) {
-    Favorite.create({ ...data }, (err, res) => {
+    await Favorite.create({ ...data }, (err, res) => {
       if (err) return err
       return res
     })
   },
-  async updateFavorite(id, data) {
-    await Favorite.updateOne({ _id: id }, { $set: { ...data } }, (err, res) => {
+  async updateFavorite(param, data) {
+    console.log({ ...data })
+    await Favorite.updateOne(param, { $set: { ...data } }, (err, res) => {
       if (err) {
         return err
       }
+      console.log(res)
       return res
     })
   },

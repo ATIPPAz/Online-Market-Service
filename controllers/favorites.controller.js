@@ -1,4 +1,10 @@
-const { getFavoriteAll, getFavoriteOne } = require('../services/favorites')
+const {
+  getFavoriteAll,
+  getFavoriteOne,
+  createFavorite,
+  deleteFavorite,
+  updateFavorite,
+} = require('../services/favorites')
 
 module.exports = {
   async onGetAll(req, res) {
@@ -26,15 +32,32 @@ module.exports = {
     }
   },
   async onCreate(req, res) {
+    console.log(req.user.userId)
+    const user = await getFavoriteOne({ userId: req.user.userId })
+    if (user) {
+      await updateFavorite({ userId: req.user.userId }, { like: req.body.like })
+      res.status(400).json({
+        status: 400,
+        data: 'liked update',
+      })
+      return
+    }
+
     res.status(201).json({
       status: 201,
-      data: [],
+      data: await createFavorite({
+        ...req.body,
+        userId: req.user.userId,
+      }),
     })
   },
   async onUpdate(req, res) {
     res.status(204).json({
       status: 204,
-      data: [],
+      data: await updateFavorite(
+        { userId: req.user.userId },
+        { like: req.body.like }
+      ),
     })
   },
 }
