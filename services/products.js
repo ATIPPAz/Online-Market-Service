@@ -5,9 +5,18 @@ module.exports = {
   },
   async getOne(id) {
     const shops = await Product.find().select('-_id')
-    const shop = shops.filter((e) => e.productId == id)
+    const shop = shops.find((e) => e.productId == id)
     if (shop.length !== 0) {
-      return shop[0]
+      return shop
+    } else {
+      return []
+    }
+  },
+  async getOneWithShop(shopId) {
+    const shops = await Product.find().select('-_id')
+    const shop = shops.filter((e) => e.shopId == shopId)
+    if (shop.length !== 0) {
+      return shop
     } else {
       return []
     }

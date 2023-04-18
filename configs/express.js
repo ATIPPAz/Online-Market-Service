@@ -3,7 +3,10 @@ const cors = require('cors')
 const routes = require('../routes/index')
 const app = async (app) => {
   require('../configs/db')
-  const allowedOrigins = ['http://localhost:4200']
+  const allowedOrigins = [
+    'http://localhost:4200',
+    'https://online-market-beta.vercel.app/',
+  ]
   const corsOptions = {
     origin: function (origin, callback) {
       if (!origin) return callback(null, true)
@@ -16,7 +19,7 @@ const app = async (app) => {
       return callback(null, true)
     },
   }
-  app.use(cors(corsOptions))
+  app.use(cors())
   app.use(express.json())
   app.use('/api/v1/', routes)
 }
