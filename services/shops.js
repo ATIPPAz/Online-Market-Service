@@ -1,9 +1,9 @@
 const Shop = require('../models/shops')
 module.exports = {
-  async getAll() {
+  async getShopAll() {
     return await Shop.find().select('-_id')
   },
-  async getOne(id) {
+  async getShopOne(id) {
     const shops = await Shop.find().select('-_id')
     const shop = shops.filter((e) => e.shopId == id)
     if (shop.length !== 0) {

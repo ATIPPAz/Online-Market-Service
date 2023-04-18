@@ -1,9 +1,9 @@
 const Catagory = require('../models/catagories')
 module.exports = {
-  async getAll() {
+  async getCatagoryAll() {
     return await Catagory.find().select('-_id')
   },
-  async getOne(id) {
+  async getCatagoryOne(id) {
     const shops = await Catagory.find().select('-_id')
     const shop = shops.filter((e) => e.catagoryId == id)
     if (shop.length !== 0) {

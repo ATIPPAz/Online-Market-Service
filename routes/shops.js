@@ -6,7 +6,6 @@ const {
   onGetRandom,
   onGetById,
 } = require('../controllers/shops.controller')
-
 router.get('/shop', onGetAll)
 router.get('/randomShop', onGetRandom)
 router.get('/shop/:id', onGetById)

@@ -1,9 +1,9 @@
 const Market = require('../models/markets')
 module.exports = {
-  async getAll() {
+  async getMarketAll() {
     return await Market.find().select('-_id')
   },
-  async getOne(id) {
+  async getMarketOne(id) {
     const shops = await Market.find().select('-_id')
     const shop = shops.filter((e) => e.marketId == id)
     if (shop.length !== 0) {

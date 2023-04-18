@@ -1,9 +1,9 @@
 const Product = require('../models/products')
 module.exports = {
-  async getAll() {
+  async getProductAll() {
     return await Product.find().select('-_id')
   },
-  async getOne(id) {
+  async getProductOne(id) {
     const shops = await Product.find().select('-_id')
     const shop = shops.find((e) => e.productId == id)
     if (shop.length !== 0) {
@@ -12,7 +12,7 @@ module.exports = {
       return []
     }
   },
-  async getOneWithShop(shopId) {
+  async getProductOneWithShop(shopId) {
     const shops = await Product.find().select('-_id')
     const shop = shops.filter((e) => e.shopId == shopId)
     if (shop.length !== 0) {

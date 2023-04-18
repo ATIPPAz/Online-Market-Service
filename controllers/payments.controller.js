@@ -1,10 +1,13 @@
-const { getCatagoryAll, getCatagoryOne } = require('../services/catagories')
+const { getPaymentAll, getPaymentOne } = require('../services/payments')
 
 module.exports = {
   async onGetAll(req, res) {
     try {
-      res.status(200).json({ status: 200, data: await getCatagoryAll() })
-    } catch (err) {
+      res.status(200).json({
+        status: 200,
+        data: await getPaymentAll(),
+      })
+    } catch {
       res.status(500).json({ status: 500, message: err.message })
     }
   },
@@ -12,7 +15,7 @@ module.exports = {
   async onGetById(req, res) {
     const id = req.params.id
     try {
-      res.status(200).json({ status: 200, data: await getCatagoryOne(id) })
+      res.status(200).json({ status: 200, data: await getPaymentOne(id) })
     } catch (err) {
       res.status(500).json({ status: 500, message: err.message })
     }
