@@ -23,4 +23,22 @@ module.exports = {
       })
     }
   },
+  onCreate(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
+  onUpdate(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
+  onDelete(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
 }

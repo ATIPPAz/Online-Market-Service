@@ -20,4 +20,22 @@ module.exports = {
       res.status(500).json({ status: 500, message: err.message })
     }
   },
+  async onCreate(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
+  async onUpdate(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
+  async onDelete(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
 }

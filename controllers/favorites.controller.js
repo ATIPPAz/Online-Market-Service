@@ -7,7 +7,7 @@ module.exports = {
     } catch (err) {
       res.status(500).json({
         status: 500,
-        data: { status: 500, message: err.message },
+        data: { message: err.message },
       })
     }
   },
@@ -21,8 +21,20 @@ module.exports = {
     } catch (err) {
       res.status(500).json({
         status: 500,
-        data: { status: 500, message: err.message },
+        data: { message: err.message },
       })
     }
+  },
+  async onCreate(req, res) {
+    res.status(201).json({
+      status: 201,
+      data: [],
+    })
+  },
+  async onUpdate(req, res) {
+    res.status(204).json({
+      status: 204,
+      data: [],
+    })
   },
 }
