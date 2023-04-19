@@ -1,12 +1,11 @@
-const { getPaymentAll, getPaymentOne } = require('../services/payments')
-const { getAccountOne, update } = require('../services/accounts')
+const { getAccountOne, update, getAccountAll } = require('../services/accounts')
 
 module.exports = {
   async onGetAll(req, res) {
     try {
       res.status(200).json({
         status: 200,
-        data: await getPaymentAll(),
+        data: await getAccountAll(),
       })
     } catch {
       res.status(500).json({ status: 500, message: err.message })
@@ -16,7 +15,9 @@ module.exports = {
   async onGetById(req, res) {
     const id = req.params.id
     try {
-      res.status(200).json({ status: 200, data: await getPaymentOne(id) })
+      res
+        .status(200)
+        .json({ status: 200, data: await getAccountOne({ accountId: id }) })
     } catch (err) {
       res.status(500).json({ status: 500, message: err.message })
     }
@@ -25,25 +26,22 @@ module.exports = {
     try {
       const id = req.params.id
       const cost = req.body.cost
-      console.log(id)
+
       const acc = await getAccountOne({ accountId: id })
       console.log(acc)
 
       if (acc.money) {
-        if (cost < acc.money) {
-          console.log('uss')
-
+        if (cost > acc.money) {
           const remain = acc.money - cost
-          await update(acc.accountId, { money: remain })
-          console.log('up')
+          await update(accout.accoutId, { money: remain })
           res
             .status(200)
             .json({ status: 200, data: await getAccountOne({ accountId: id }) })
         } else {
-          res.status(500).json({ status: 500, data: 1 })
+          res.status(500).json({ status: 500, data: 'เงินไม่พอ' })
         }
       } else {
-        res.status(500).json({ status: 500, data: 2 })
+        res.status(500).json({ status: 500, data: 'ไม่พบบัญชีธนาคารนี้' })
       }
     } catch (err) {
       res.status(500).json({ status: 500, data: 'พัง' })

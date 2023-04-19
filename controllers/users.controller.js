@@ -2,11 +2,33 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { getUserAll, getUserOne, createUser } = require('../services/users')
 module.exports = {
-  async registerUser(req, res) {
-    const { firstName, lastName, phone, email, password, username, address } =
-      await req.body
-    console.log(lastName)
+  async getUserWithJwt(req, res) {
     try {
+      const user = await getUserOne({ _id: req.user.userId })
+      console.log(user)
+      res.json({
+        status: 409,
+        data: {
+          address: user.address,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          username: user.username,
+          _id: user._id,
+          phone: user.phone,
+        },
+      })
+    } catch (err) {
+      res.json({
+        status: 500,
+        massage: err.massage,
+      })
+    }
+  },
+  async registerUser(req, res) {
+    try {
+      const { firstName, lastName, phone, email, password, username, address } =
+        await req.body
       const user = await getUserOne({ $or: [{ username }, { email }] })
       if (user) {
         return res
@@ -38,9 +60,10 @@ module.exports = {
     }
   },
   async login(req, res) {
-    const { username, password } = req.body
     try {
+      const { username, password } = await req.body
       const user = await getUserOne({ username })
+      console.log(user)
       if (!user) {
         return res.status(401).json({ message: 'Invalid username' })
       }

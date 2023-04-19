@@ -11,6 +11,7 @@ const order = require('./orders')
 const user = require('./users')
 const orderStatus = require('./orderStatuses')
 const payment = require('./payments')
+const account = require('./accounts')
 
 const routes = express.Router()
 
@@ -24,6 +25,7 @@ routes.use(cartStatus)
 routes.use(favorite)
 routes.use(order)
 routes.use(user)
+routes.use(account)
 routes.use(orderStatus)
 routes.use(payment)
 

@@ -4,7 +4,7 @@ module.exports = {
     return await Payment.find().select('')
   },
   async getPaymentOne(id) {
-    return await Payment.findOne({ _id: id }).select('')
+    return await Payment.findOne({ userId: id }).select('')
   },
   async createPayment(data) {
     Payment.create({ ...data }, (err, res) => {

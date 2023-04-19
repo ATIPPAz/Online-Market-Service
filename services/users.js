@@ -4,7 +4,7 @@ module.exports = {
     return await User.find().select('-password')
   },
   async getUserOne(param) {
-    const user = await User.findOne(param).select('-password')
+    const user = await User.findOne(param).select('')
     return user
   },
   async createUser(data) {
