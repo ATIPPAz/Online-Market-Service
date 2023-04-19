@@ -3,7 +3,7 @@ const { getShopOne, getShopAll } = require('../services/shops')
 module.exports = {
   async onGetAll(req, res) {
     try {
-      res.status(200).json({ status: 200, data: getShopAll() })
+      res.status(200).json({ status: 200, data: await getShopAll() })
     } catch (err) {
       res.status(500).json({ status: 500, message: err.message })
     }
