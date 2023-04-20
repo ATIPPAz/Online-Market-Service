@@ -13,7 +13,4 @@ function convertJwt(req, res, next) {
     res.status(401).send({ status: 401, error: 'Invalid token' })
   }
 }
-// console.log(req.user)
-// const user = await getUserOne({ _id: req.user.userId })
-// console.log(user)
 module.exports = convertJwt
