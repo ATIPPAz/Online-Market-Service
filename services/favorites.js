@@ -13,12 +13,10 @@ module.exports = {
     })
   },
   async updateFavorite(param, data) {
-    console.log({ ...data })
     await Favorite.updateOne(param, { $set: { ...data } }, (err, res) => {
       if (err) {
         return err
       }
-      console.log(res)
       return res
     })
   },

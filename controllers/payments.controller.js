@@ -1,4 +1,8 @@
-const { getPaymentAll, getPaymentOne } = require('../services/payments')
+const {
+  getPaymentAll,
+  getPaymentOne,
+  createPayment,
+} = require('../services/payments')
 const { getAccountOne, update } = require('../services/accounts')
 
 module.exports = {
@@ -54,6 +58,9 @@ module.exports = {
     // }
   },
   async onCrete(req, res) {
+    const userId = req.user.userId
+    const accountId = req.body.accountId
+    await createPayment({ userId, accountId })
     res.status(201).json({
       status: 201,
       data: [],

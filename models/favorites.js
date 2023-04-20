@@ -6,7 +6,8 @@ const favoriteSchema = new Schema({
   },
   like: [
     {
-      type: String,
+      shopId: { type: String },
+      product: [{ type: String }],
     },
   ],
 })

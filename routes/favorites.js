@@ -8,8 +8,7 @@ const {
   onCreate,
 } = require('../controllers/favorites.controller')
 
-router.get('/favorite', checkJwt, onGetAll)
-router.get('/favorite/:id', checkJwt, onGetById)
+router.get('/favorite/', checkJwt, convertJwt, onGetById)
 router.post('/favorite/', checkJwt, convertJwt, onCreate)
 
 module.exports = router
