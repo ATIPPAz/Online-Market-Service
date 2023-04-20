@@ -7,7 +7,7 @@ module.exports = {
     return await Cart.findOne({ _id: id }).select('')
   },
   async createCart(data) {
-    Cart.create({ ...data }, (err, res) => {
+    await Cart.create({ ...data }, (err, res) => {
       if (err) return err
       return res
     })
