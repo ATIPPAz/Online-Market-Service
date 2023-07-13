@@ -19,6 +19,7 @@ const app = async (app) => {
       return callback(null, true)
     },
   }
+
   app.use(cors())
   app.use(express.json())
   app.use('/api/v1/', routes)
