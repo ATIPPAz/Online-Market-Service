@@ -2,10 +2,10 @@
   "name": "paimarket-service",
   "version": "1.0.0",
   "description": "RESTFul API with express on node",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
-    "dev": "nodemon .",
-    "start": "NODE_ENV=production node ."
+    "dev": "nodemon ./api/index.js",
+    "start": "NODE_ENV=production node ./api/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
